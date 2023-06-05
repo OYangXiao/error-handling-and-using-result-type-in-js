@@ -6,8 +6,8 @@ import { sync_task, sync_task_throws_string} from './tasks';
  * 注意观察，如果函数抛出异常，else部分的代码并不会被执行
  */
 
-const res = sync_task('1.1');
-// const res = sync_task_throws_string('1.2');
+// const res = sync_task('1.1');
+const res = sync_task_throws_string('1.2');
 
 res.includes('success')
   ? print_success(res)

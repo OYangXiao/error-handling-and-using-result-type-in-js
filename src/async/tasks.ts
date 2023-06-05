@@ -23,7 +23,7 @@ export const promise_error = (id: string) =>
   new Promise<string>((_, reject) => {
     setTimeout(() => {
       reject(new Error(`promise error ${id} --- ${error_msg}`));
-      //   console.warn('I PRINT BEFORE REJECT')
+      console.warn('I PRINT BEFORE REJECT');
     }, 0);
   });
 
@@ -37,7 +37,7 @@ export const promise_success = (id: string) =>
 export const promise_throw = (id: string) =>
   new Promise<string>(() => {
     throw new Error(`promise throw ${id} --- ${error_msg}`);
-      console.warn('I PRINT AFTER REJECT')
+    console.warn('I PRINT AFTER REJECT');
   });
 
 export const promise_throw_in_async_func = (id: string) =>

@@ -21,14 +21,14 @@ try {
 } catch (e) {
   handled_error(e);
 }
+print_success(res2);
 // 虽然在ts中这里报错了,但其实没问题的
 // 因为var声明的变量是在js文件parse的时候就已经声明了
-print_success(res2);
 
 // 如果希望使用let和const,我们可以这样做
 let res3;
 try {
-  res2 = sync_task('2.3');
+  res3 = sync_task('2.3');
 } catch (e) {
   handled_error(e);
 }

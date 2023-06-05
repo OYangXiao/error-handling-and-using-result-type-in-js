@@ -44,12 +44,12 @@ await promise_task('5.4')
       return handled_error(err);
     }
   )
+  .catch(handled_error)
   .finally(final_print)
   //! 虽然5.4的exception被5.4的fail捕获了
   //! 但是在拿到5.4的结果之后,我们常常会做更多的处理
   //! 这种处理的过程也有可能会抛出异常
   //! 因此统一增加catch的处理会保证这里面的其他异常也能被捕获
-  .catch(handled_error);
 
 // 另外还有一个很特别的点就是
 //? promise中应该reject还是throw呢?

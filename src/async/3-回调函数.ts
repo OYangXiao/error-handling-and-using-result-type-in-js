@@ -1,3 +1,4 @@
+import { sync_task } from '../sync/tasks';
 import { handled_error, print_success } from '../utils/print';
 import { callback_task } from './tasks';
 
@@ -7,10 +8,14 @@ import { callback_task } from './tasks';
  * 以下是一个典型的node风格的回调函数
  * error-first callback
  */
-callback_task((error, result) => {
-  if (error) print_success(result);
-  else handled_error(error);
-});
+try {
+  callback_task((error, result) => {
+    if (error) print_success(result);
+    else handled_error(error);
+  });
+} catch (e) {
+  console.log(e);
+}
 
 //! 但是很明显的问题是
 //! callback导致代码层层嵌套
@@ -18,3 +23,27 @@ callback_task((error, result) => {
 
 //! 我们无法catch住异步代码中的exception
 //! 因为try catch执行的时机早于异步代码的执行时机
+
+window.onerror = function (message, file, lineNumber) {
+  // check if the error is from the callback
+};
+
+// 但是我们可以在回调函数中处理错误
+export function callback_task_with_try_catch(
+  callback: (error: string | null, result?: string) => void
+) {
+  setTimeout(() => {
+    let res;
+    try {
+      res = sync_task('3.1');
+      callback(null, res);
+    } catch (e) {
+      callback((e as any).message, res);
+    }
+  }, 0);
+}
+
+callback_task_with_try_catch((error, result) => {
+  if (error) print_success(result);
+  else handled_error(error);
+})
