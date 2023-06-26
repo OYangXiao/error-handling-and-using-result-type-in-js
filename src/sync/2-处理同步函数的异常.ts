@@ -1,12 +1,12 @@
 import { handled_error, print_success } from '../utils/print';
-import { sync_task } from './tasks';
+import { sync_task,sync_task_throws_string } from './tasks';
 
 /**
  * 调用一个可能会抛出异常的函数
  * 但是我们用try catch保护它
  */
 try {
-  const res = sync_task('2.1');
+  const res = sync_task_throws_string('2.1');
   print_success(res);
 } catch (e) {
   handled_error(e);

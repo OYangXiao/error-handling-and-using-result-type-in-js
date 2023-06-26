@@ -3,16 +3,15 @@ export function print_new_line() {
 }
 
 export function print_success(result?: string) {
-  console.log('print_success', result);
+  console.log('print success', result);
   return result;
 }
 
 export function handled_error(err: any) {
-  console.error('HANDLED ERROR:', err);
-  console.log('typeof err', typeof err);
+  console.error('handle_error function, error is:', err);
   return 'error handled: ' + err;
 }
 
 export function final_print(result?: string) {
-  console.log('final_print', result, '\n\n');
+  console.log('final print', result, '\n\n');
 }

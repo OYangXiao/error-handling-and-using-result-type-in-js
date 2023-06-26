@@ -5,4 +5,4 @@
 // import './async/4-promise'
 import './async/5-promise-catch'
 
-console.log('---------------\nafter story\n')
+// console.log('---------------\nafter story\n')

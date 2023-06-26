@@ -10,11 +10,11 @@ import { callback_task } from './tasks';
  */
 try {
   callback_task((error, result) => {
-    if (error) print_success(result);
-    else handled_error(error);
+    if (error) handled_error(error);
+    else print_success(result);
   });
 } catch (e) {
-  console.log(e);
+  console.log('hi', e);
 }
 
 //! 但是很明显的问题是
@@ -24,9 +24,9 @@ try {
 //! 我们无法catch住异步代码中的exception
 //! 因为try catch执行的时机早于异步代码的执行时机
 
-window.onerror = function (message, file, lineNumber) {
-  // check if the error is from the callback
-};
+// window.onerror = function (message, file, lineNumber) {
+//   // check if the error is from the callback
+// };
 
 // 但是我们可以在回调函数中处理错误
 export function callback_task_with_try_catch(
@@ -43,7 +43,7 @@ export function callback_task_with_try_catch(
   }, 0);
 }
 
-callback_task_with_try_catch((error, result) => {
-  if (error) print_success(result);
-  else handled_error(error);
-})
+// callback_task_with_try_catch((error, result) => {
+//   if (error) print_success(result);
+//   else handled_error(error);
+// })
